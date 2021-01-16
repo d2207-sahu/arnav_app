@@ -38,53 +38,69 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: FlatButton(
+          color: Colors.pink,
           onPressed: () {
             showDialog(
               context: context,
-              barrierDismissible: false,
+              barrierDismissible: true,
               // false = user must tap button, true = tap outside dialog
               builder: (BuildContext dialogContext) {
-                return Container(
-                  width: width * 0.8,
-                  height: height * 0.7,
-                  child: Column(
-                    children: [
-                      topWidget(),
-                      radioButtonWidget('kaidgfs'),
-                      radioButtonWidget('kaidgfs'),
-                      radioButtonWidget('kaidgfs'),
-                      Divider(
-                        color: Colors.black12,
-                        height: 2,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            'Quantity',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                return AlertDialog(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                  content: Container(
+                    constraints: BoxConstraints(maxWidth: width * 0.8),
+                    width: width * 0.8,
+                    height: height * 0.56,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        topWidget(),
+                        radioButtonWidget('kaidgfs'),
+                        radioButtonWidget('kaidgfs'),
+                        radioButtonWidget('kaidgfs'),
+                        Divider(
+                          color: Colors.black12,
+                          height: 2,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Quantity',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Row(
+                              // mainAxisAlignment: ,
+                              children: [
+                                circularButton(Icons.minimize),
+                                Text('0'),
+                                circularButton(Icons.minimize),
+                              ],
+                            )
+                          ],
+                        ),
+                        Divider(
+                          color: Colors.black12,
+                          height: 2,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Column(
+                            children: [
+                              rowText('text', 'price'),
+                              rowText('text', 'price'),
+                              rowText('text', 'price'),
+                            ],
                           ),
-                          circularButton(Icons.minimize),
-                          Text('0'),
-                          circularButton(Icons.minimize),
-                        ],
-                      ),
-                      Divider(
-                        color: Colors.black12,
-                        height: 2,
-                      ),
-                      Column(
-                        children: [
-                          rowText('text', 'price'),
-                          rowText('text', 'price'),
-                          rowText('text', 'price'),
-                        ],
-                      ),
-                      Divider(
-                        color: Colors.black12,
-                        height: 4,
-                      ),
-                      rowText('asd', 'sd'),
-                    ],
+                        ),
+                        Divider(
+                          color: Colors.black12,
+                          height: 4,
+                        ),
+                        rowText('asd', 'sd'),
+                      ],
+                    ),
                   ),
                 );
               },
@@ -99,40 +115,58 @@ class _MyHomePageState extends State<MyHomePage> {
 
   /// rectanlge orange button
   Widget Button() {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.deepOrangeAccent,
-        borderRadius: BorderRadius.circular(4.0),
+    return Center(
+      child: Container(
+        height: 50,
+        width: 100,
+        decoration: BoxDecoration(
+          color: Colors.deepOrangeAccent,
+          borderRadius: BorderRadius.circular(4.0),
+        ),
+        child: Center(
+            // TODO widget daale yaha pe
+            // child: ,
+            ),
       ),
-      child: Center(
-          // TODO widget daale yaha pe
-          // child: ,
-          ),
     );
   }
 
   Widget topWidget() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Button(),
-        Text(
-          'Size',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+    return Center(
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.8,
+        height: MediaQuery.of(context).size.height * 0.1,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Button(),
+            Text(
+              'Size',
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+            ),
+            Button(),
+          ],
         ),
-        Button(),
-      ],
+      ),
     );
   }
 
   circularButton(IconData icons) {
-    return RawMaterialButton(
-      onPressed: () {},
-      fillColor: Colors.pink,
-      child: Center(
-          // TODO child me daal le icon
+    return Container(
+      width: 64,
+      padding: EdgeInsets.all(8),
+      height: 64,
+      child: RawMaterialButton(
+        onPressed: () {},
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(32))),
+        fillColor: Colors.pink,
+        child: Center(
+            // TODO child me daal le icon
 
-          ),
+            ),
+      ),
     );
   }
 
